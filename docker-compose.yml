@@ -1,0 +1,14 @@
+services:
+  rails:
+    build: .
+    volumes:
+      - .:/workspace
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    command: bash -c "cd /workspace/myapp && bin/rails server -b 0.0.0.0"
+
+volumes:
+  bundle:
