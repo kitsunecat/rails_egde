@@ -1,0 +1,20 @@
+# cloned Rails source (large, not our code)
+rails/
+
+# generated app
+myapp/tmp/
+myapp/log/
+myapp/.bundle/
+myapp/node_modules/
+myapp/public/assets/
+myapp/storage/
+myapp/*.sqlite3
+myapp/*.sqlite3-journal
+
+# local bundle config
+.bundle/
+
+# editor
+.DS_Store
+*.swp
+*.swo
