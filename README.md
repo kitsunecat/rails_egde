@@ -19,7 +19,7 @@ rails_egde/
 | `ruby:3.4` イメージ | edge Rails の動作には最新 Ruby が必要 |
 | gem をイメージに焼き込まない | `bundle install` の結果を名前付きボリューム `bundle` に保存し、イメージの再ビルドなしに gem を更新できる |
 | `--dev` フラグ | 生成アプリの Gemfile が `gem "rails", path: "../rails"` のローカル参照になる。Rails 本体を編集→即反映できる |
-| `sleep infinity` コマンド | コンテナを常駐させて `docker compose exec rails bash` で入る運用。プロセスを起動・停止しやすい |
+| `sleep infinity` コマンド → `rails server` コマンド | `docker compose up` だけで Rails server が起動する。`shell.sh` でコンテナに入れる |
 | `rails/` を gitignore | rails/rails 本体は別リポジトリなので本プロジェクトに含めない |
 
 ## スクリプト
@@ -28,7 +28,7 @@ rails_egde/
 |---|---|
 | `./setup.sh` | 初回セットアップ（clone → ビルド → bundle install → アプリ生成）を一括実行 |
 | `./start.sh` | 通常起動（コンテナ起動 → Rails サーバー開始） |
-| `./shell.sh` | コンテナに入り `/workspace` で bash を起動 |
+| `./shell.sh` | コンテナに入り `/workspace/myapp` で bash を起動 |
 
 ## セットアップ手順
 
@@ -52,18 +52,11 @@ rails_egde/
 ### サーバー起動
 
 ```bash
-./start.sh        # コンテナ起動 → Rails server が自動で立ち上がる
+./start.sh
 # → http://localhost:3000 でアクセス
 ```
 
-ログを確認したい場合：
-
-```bash
-docker compose logs -f
-```
-
-`docker compose up -d` だけでも同様にサーバーが起動します。
-`myapp` がまだない場合（初回セットアップ前）は `sleep infinity` で待機します。
+`docker compose up -d` でも同様に起動します。ログは `docker compose logs -f` で確認できます。
 
 ### Rails 本体のソースを読む・書き換える
 
