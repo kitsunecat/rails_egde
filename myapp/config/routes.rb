@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # get "offline" => "rails/pwa#offline", as: :pwa_offline
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "markdown_previews#show"
+  post "/", to: "markdown_previews#show"
 end

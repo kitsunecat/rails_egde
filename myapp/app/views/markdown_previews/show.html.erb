@@ -1,0 +1,18 @@
+<h1>HTML → Markdown</h1>
+
+<%= form_with url: root_path, method: :post do |form| %>
+  <div style="display: flex; gap: 1rem; align-items: stretch;">
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <label for="html">HTML(入力)</label>
+      <%= form.text_area :html, value: @html, rows: 20,
+            style: "width: 100%; font-family: monospace;",
+            placeholder: "<h1>Hello</h1><p>This is <strong>bold</strong>.</p>" %>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <label for="markdown">Markdown(to_markdown の結果)</label>
+      <%= form.text_area :markdown, value: @markdown, rows: 20, readonly: true,
+            style: "width: 100%; font-family: monospace; background: #f5f5f5;" %>
+    </div>
+  </div>
+  <p><%= form.submit "変換" %></p>
+<% end %>
